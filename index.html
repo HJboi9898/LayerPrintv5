@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LayerCraft 3D - Custom MakerWorld 3D Printing Quotes</title>
+<style>
+:root {
+  --primary: #ff5500;
+  --primary-hover: #e04b00;
+  --bg-color: #f9f9f9;
+  --card-bg: #ffffff;
+  --text-color: #1a1a1a;
+  --text-muted: #666666;
+  --border-color: #dddddd;
+  --input-bg: #ffffff;
+  --preview-bg: #f0f4f8;
+  --preview-border: #cbd5e1;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #f1f1f1;
+  --text-muted: #aaaaaa;
+  --border-color: #333333;
+  --input-bg: #2a2a2a;
+  --preview-bg: #252d38;
+  --preview-border: #3b4856;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+
+body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+
+header { background-color: #1a1a1a; color: white; padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 100; }
+
+.header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+
+.logo h1 { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
+
+.logo span { color: var(--primary); }
+
+.theme-toggle-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 0.4rem 0.9rem; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+.theme-toggle-btn:hover { background: #333; }
+
+.hero { background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), linear-gradient(135deg, #2a2a2a, #1a1a1a); color: white; padding: 5rem 2rem; text-align: center; }
+
+.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #ccc; }
+
+.btn { display: inline-block; background-color: var(--primary); color: white; padding: 0.8rem 2rem; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; text-decoration: none; cursor: pointer; text-align: center; }
+
+.btn:hover { background-color: var(--primary-hover); }
+
+.btn-secondary { background-color: #444; margin-bottom: 1rem; color: #fff; }
+
+.btn-secondary:hover { background-color: #555; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+.section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+
+.step-card { background: var(--card-bg); padding: 2rem; border-radius: 8px; text-align: center; border: 1px solid var(--border-color); }
+
+.step-number { background-color: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem; }
+
+.order-section { background: var(--card-bg); max-width: 700px; margin: 0 auto; padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color); }
+
+.form-group { margin-bottom: 1.5rem; }
+
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); border-radius: 6px; font-size: 1rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.fixed-badge { display: inline-block; background: var(--input-bg); border: 2px solid var(--border-color); padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; color: var(--text-color); }
+
+.price-preview-box { background: var(--preview-bg); border: 1px solid var(--preview-border); padding: 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; }
+
+.form-submit-btn { width: 100%; padding: 1rem; margin-top: 1rem; }
+
+footer { background-color: #1a1a1a; color: #aaa; text-align: center; padding: 2rem; margin-top: 4rem; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-container">
+<div class="logo"><h1>LayerCraft <span>3D</span></h1></div>
+<button class="theme-toggle-btn" id="themeToggleBtn">🌙 Dark Mode</button>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<h2>Get Custom MakerWorld Prints</h2>
+<p>Find a model, send us the link, and check our instant price estimator below!</p>
+<a href="#order-form" class="btn">Get a Quote Below</a>
+</div>
+</section>
+
+<div class="container">
+<section class="steps">
+<div class="step-card">
+<div class="step-number">1</div>
+<h3>Find a Model</h3>
+<p>Browse MakerWorld and find an item you want printed.</p>
+</div>
+<div class="step-card">
+<div class="step-number">2</div>
+<h3>Enter Weight & Time</h3>
+<p>Input the estimated weight and print time from MakerWorld.</p>
+</div>
+<div class="step-card">
+<div class="step-number">3</div>
+<h3>Get Your Price Quote</h3>
+<p>Click the button to open Gmail with all order details pre-filled!</p>
+</div>
+</section>
+
+<section id="order-form">
+<h2 class="section-title">Submit Design for Quote</h2>
+<div class="order-section">
+
+<div style="text-align: center; margin-bottom: 1.5rem;">
+<p style="margin-bottom: 0.5rem; font-weight: 600;">Don't have a link yet?</p>
+<a href="https://makerworld.com" target="_blank" class="btn btn-secondary">Open MakerWorld Website ↗</a>
+</div>
+
+<form id="makerWorldForm">
+<div class="form-group">
+<label for="makerLink">MakerWorld Model Link *</label>
+<input type="url" id="makerLink" required placeholder="https://makerworld.com...">
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label>Material</label>
+<div class="fixed-badge">Standard PLA</div>
+</div>
+<div class="form-group">
+<label for="colour">Colour *</label>
+<select id="colour" required>
+  <optgroup label="Standard Colours ($0.12 / g)">
+    <option value="Purple" data-extra="0">Purple</option>
+    <option value="Dark Blue" data-extra="0">Dark Blue</option>
+    <option value="Yellow" data-extra="0">Yellow</option>
+    <option value="Green" data-extra="0">Green</option>
+    <option value="Orange" data-extra="0">Orange</option>
+    <option value="Red" data-extra="0">Red</option>
+    <option value="Silver" data-extra="0">Silver</option>
+    <option value="Brown" data-extra="0">Brown</option>
+    <option value="Peach" data-extra="0">Peach</option>
+  </optgroup>
+  <optgroup label="High Demand Colours ($0.14 / g)">
+    <option value="Black" data-extra="0.02">Black (+ $0.02/g)</option>
+    <option value="White" data-extra="0.02">White (+ $0.02/g)</option>
+    <option value="Gold" data-extra="0.02">Gold (+ $0.02/g)</option>
+  </optgroup>
+</select>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="weight">Est. Weight (grams)</label>
+<input type="number" id="weight" min="0" placeholder="e.g. 50">
+</div>
+<div class="form-group">
+<label for="hours">Est. Print Time (hours)</label>
+<input type="number" id="hours" min="0" step="0.5" placeholder="e.g. 3">
+</div>
+</div>
+
+<!-- Dynamic Price Preview Box -->
+<div class="price-preview-box">
+<span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; font-weight: 700; display: block;">Estimated Quote Preview</span>
+<span id="estimatedPrice" style="font-size: 1.8rem; font-weight: 800; color: var(--primary); display: block; margin: 0.2rem 0;">$5.00</span>
+<span id="rateBreakdown" style="font-size: 0.8rem; opacity: 0.75;">*Includes $5 setup fee + $0.12/g PLA (Purple) & $2.50/hr rates. Final quote confirmed via email.</span>
+</div>
+
+<div class="form-group">
+<label for="notes">Notes / Special Instructions</label>
+<textarea id="notes" rows="3" placeholder="Any scaling options or special needs?"></textarea>
+</div>
+
+<button type="submit" class="btn form-submit-btn" id="submitBtn">Open Gmail For Price Quote</button>
+<p id="formStatus" style="margin-top: 1rem; text-align: center; font-weight: 600;"></p>
+</form>
+</div>
+</section>
+</div>
+
+<footer>
+<p>&copy; 2026 LayerCraft Shop. Custom quotes delivered directly to your inbox.</p>
+</footer>
+
+<script>
+const QUOTE_EMAILS = [
+  "105196@student.brisbanechristiancollege.com.au",
+  "105015@student.brisbanechristiancollege.com.au"
+].join(",");
+
+// --- DARK / LIGHT THEME TOGGLE LOGIC ---
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const savedTheme = localStorage.getItem('layercraft_theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeToggleBtn.textContent = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+
+themeToggleBtn.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('layercraft_theme', newTheme);
+  themeToggleBtn.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+});
+
+// --- BASE RATES ---
+const BASE_GRAM_RATE = 0.12;
+const HOUR_RATE = 2.50;
+
+// --- DYNAMIC PRICE CALCULATOR ---
+const weightInput = document.getElementById('weight');
+const hoursInput = document.getElementById('hours');
+const colourSelect = document.getElementById('colour');
+const estimatedPriceEl = document.getElementById('estimatedPrice');
+const rateBreakdownEl = document.getElementById('rateBreakdown');
+
+function calculatePrice() {
+  const weight = parseFloat(weightInput.value) || 0;
+  const hours = parseFloat(hoursInput.value) || 0;
+  const selectedOption = colourSelect.options[colourSelect.selectedIndex];
+  const extraRate = parseFloat(selectedOption.getAttribute('data-extra')) || 0;
+  
+  const effectiveGramRate = BASE_GRAM_RATE + extraRate;
+  const baseFee = 5.00;
+
+  let total = baseFee + (weight * effectiveGramRate) + (hours * HOUR_RATE);
+  if (total < baseFee) total = baseFee;
+  
+  estimatedPriceEl.textContent = "$" + total.toFixed(2);
+  rateBreakdownEl.textContent = `*Includes $5 setup fee + $${effectiveGramRate.toFixed(2)}/g PLA (${selectedOption.value}) & $2.50/hr rates. Final quote confirmed via email.`;
+}
+
+weightInput.addEventListener('input', calculatePrice);
+hoursInput.addEventListener('input', calculatePrice);
+colourSelect.addEventListener('change', calculatePrice);
+
+// --- DIRECT GMAIL DEEP LINK / WEB SUBMISSION ---
+document.getElementById('makerWorldForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const modelLink = document.getElementById('makerLink').value;
+  const customerNotes = document.getElementById('notes').value || "None";
+  const estWeight = weightInput.value ? weightInput.value + "g" : "Not specified";
+  const estHours = hoursInput.value ? hoursInput.value + " hrs" : "Not specified";
+  const estPrice = estimatedPriceEl.textContent;
+  const chosenColour = colourSelect.value;
+
+  const subject = "Quote Request: MakerWorld Print Job";
+  const body =
+    "MakerWorld Model Link: " + modelLink + "\n" +
+    "Material: Standard PLA\n" +
+    "Colour Choice: " + chosenColour + "\n" +
+    "Est. Weight: " + estWeight + "\n" +
+    "Est. Print Time: " + estHours + "\n" +
+    "Estimated Quote Preview: " + estPrice + "\n\n" +
+    "Notes / Special Instructions:\n" + customerNotes;
+
+  const statusEl = document.getElementById('formStatus');
+  statusEl.style.color = "#1a7a1a";
+  statusEl.textContent = "Opening Gmail compose window...";
+
+  const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(QUOTE_EMAILS) +
+    "&su=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  window.open(gmailUrl, '_blank');
+});
+</script>
+</body>
+</html>
